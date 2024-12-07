@@ -34,14 +34,14 @@ export default function Home() {
           <h1 className="text-4xl text-[#303030] font-extrabold tracking-wide leading-normal uppercase ">
             Take a look at my experience in software engineering along with the {" "}
             <span className="text-tersier">projects, articles, and products</span>{" "}
-            I've worked on
+            I`ve worked on
           </h1>
           <br />
           <br />
           {/* Subheading */}
           <p className="text-4xl text-[#303030] font-extrabold tracking-wide leading-normal uppercase">
             <span className=" text-tersier">Welcome to my portfolio</span>
-            —where I showcase my skills, share insights through articles, and present the products I've developed.
+            —where I showcase my skills, share insights through articles, and present the products I`ve developed.
           </p>
           <br />
           <br />
