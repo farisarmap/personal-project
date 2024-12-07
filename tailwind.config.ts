@@ -9,9 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#FFF5EE",
+        secondary: "#75FBC0",
+        tersier: "#5DC999",
+        quatenary: "#05171C"
       },
+      fontFamily: {
+        tts: ['thick-thinks'],
+        poppins: ['Poppins']
+      }
     },
   },
   plugins: [],
