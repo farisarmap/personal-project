@@ -1,18 +1,22 @@
 export const navbar = [
     {
         name: "Projects",
-        link: "/projects"
+        link: "/projects",
+        priority: 1
     },
     {
         name: "About Me",
-        link: "/about-me"
+        link: "/about-me",
+        priority: 2
     },
     {
         name: "Articles",
-        link: "/articles"
+        link: "/articles",
+        priority: 3
     },
     {
         name: "Code Solutions",
-        link: "/code-solutions"
+        link: "/code-solutions",
+        priority: 4
     }
 ]

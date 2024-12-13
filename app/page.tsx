@@ -1,37 +1,41 @@
 import DisplayCard from "@/components/card/display-card";
+import Navigation from "@/components/navigation/navigation";
 import { navbar } from "@/data/navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 import { LiaLinkedin } from "react-icons/lia";
 
+export const metadata = {
+  title: 'Faris Sarma - Software Engineer Portfolio',
+  description: 'Explore my portfolio showcasing projects, articles, and products I have developed as a software engineer.',
+  openGraph: {
+    title: 'Faris Sarma - Software Engineer Portfolio',
+    description: 'Explore my portfolio showcasing projects, articles, and products I have developed as a software engineer.',
+    images: [
+      {
+        url: '/icon/avatar/avatar.png',
+        width: 800,
+        height: 600,
+        alt: 'Faris Sarma Avatar',
+      },
+    ],
+  },
+};
+
+
 export default function Home() {
   return (
-    <main className=" bg-primary min-h-screen">
-      <nav className=" flex w-full flex-row justify-between px-6 h-[98px] border-b-2 border-black">
-        <div className=" w-[10%] flex items-center px-20 py-14">
-          <h1 className=" text-6xl font-tts text-[#303030] rotate-12 uppercase">f</h1>
-        </div>
-        <div className="w-[70%] flex justify-between items-center pl-32">
-          <ul className=" w-[60%] flex flex-row justify-between px-4">
-            {navbar.map((item, idx) => (
-              <Link href={item.link} key={`nav-${idx}`}>
-                <li className=" text-[20px] text-[#303030] font-light">{item.name}</li>
-              </Link>
-            ))}
-          </ul>
-          <div className="w-1/5 flex justify-center h-[50px] ">
-            <button className=" bg-secondary text-black font-bold text-[20px] px-6 rounded-full border border-black">Get in Touch</button>
-          </div>
-        </div>
-      </nav>
+    <main className=" min-h-screen">
+      <Navigation />
+
       <section className=" font-tts flex justify-center h-[300px] border-b-2 border-black">
-        <h1 className=" text-[250px] text-[#303030]">FARIS SARMA</h1>
+        <h1 className=" text-[250px] text-defColorText">FARIS SARMA</h1>
       </section>
       <section className="px-5 border-b-2 border-black flex">
         <div className=" w-[65%] p-10 border-r-2 border-black">
           {/* Heading */}
-          <h1 className="text-4xl text-[#303030] font-extrabold tracking-wide leading-normal uppercase ">
+          <h1 className="text-4xl text-defColorText font-extrabold tracking-wide leading-normal uppercase ">
             Take a look at my experience in software engineering along with the {" "}
             <span className="text-tersier">projects, articles, and products</span>{" "}
             I`ve worked on
@@ -39,13 +43,13 @@ export default function Home() {
           <br />
           <br />
           {/* Subheading */}
-          <p className="text-4xl text-[#303030] font-extrabold tracking-wide leading-normal uppercase">
+          <p className="text-4xl text-defColorText font-extrabold tracking-wide leading-normal uppercase">
             <span className=" text-tersier">Welcome to my portfolio</span>
             —where I showcase my skills, share insights through articles, and present the products I`ve developed.
           </p>
           <br />
           <br />
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
             <Link href={"http://linkedin.com/in/faris-sarma"} rel="noopener noreferrer" target="_blank">
               <LiaLinkedin size={50} color="#303030" />
             </Link>
@@ -61,14 +65,21 @@ export default function Home() {
         </div>
 
       </section>
-      <section className=" py-20 bg-[#faf4ef] border-b-2 border-black">
-        <h1 className=" text-[128px] text-[#303030] font-extrabold mb-10 px-16">Project Collections</h1>
+      <section className=" py-20 border-b-2 border-black">
+        <h1 className=" text-[128px] text-defColorText font-extrabold px-16">Project Collections</h1>
+        <div className="flex justify-end pr-36 mb-10">
+          <Link href={"/projects"}>
+            <button className="relative text-defColorText font-extrabold text-[30px] uppercase group hover:scale-105 transition-transform duration-300">
+              See More
+              <div className="absolute left-1/2 transform -translate-x-1/2 top-full flex items-center gap-1 transition-all duration-300 group-hover:scale-105">
+                <span className="block w-[100px] h-[4px] bg-tersier transition-all duration-300 group-hover:w-[150px]"></span>
+                <span className="block w-4 h-4 border-t-4 border-r-4 border-tersier rotate-45"></span>
+              </div>
+            </button>
+          </Link>
+        </div>
         <div className="flex justify-center mb-20">
           <div className="grid grid-cols-4 gap-6">
-            <DisplayCard />
-            <DisplayCard />
-            <DisplayCard />
-            <DisplayCard />
             <DisplayCard />
             <DisplayCard />
             <DisplayCard />
@@ -76,14 +87,26 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="py-20 bg-[#faf4ef] border-b-2 border-black">
-        <h1 className=" text-[128px] text-[#303030] font-extrabold mb-10 px-16">Latest Articles</h1>
+      <section className="py-20 border-b-2 border-black">
+        <h1 className=" text-[128px] text-defColorText font-extrabold px-16">Latest Articles</h1>
+        <div className="flex justify-end pr-36 mb-10">
+          <Link href={"/articles"}>
+            <button className="relative text-defColorText font-extrabold text-[30px] uppercase group hover:scale-105 transition-transform duration-300">
+              See More
+              <div className="absolute left-1/2 transform -translate-x-1/2 top-full flex items-center gap-1 transition-all duration-300 group-hover:scale-105">
+                <span className="block w-[100px] h-[4px] bg-tersier transition-all duration-300 group-hover:w-[150px]"></span>
+                <span className="block w-4 h-4 border-t-4 border-r-4 border-tersier rotate-45"></span>
+              </div>
+            </button>
+          </Link>
+        </div>
         <div className="flex justify-center gap-6 items-center mb-20">
           <DisplayCard />
           <DisplayCard />
           <DisplayCard />
           <DisplayCard />
         </div>
+
       </section>
       <br />
       <br />
