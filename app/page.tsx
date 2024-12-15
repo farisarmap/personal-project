@@ -4,6 +4,8 @@ import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 import { LiaLinkedin } from "react-icons/lia";
 
+//! resolve mobile response (!IMPORTANT)
+
 export const metadata = {
   title: 'Faris Sarma - Software Engineer Portfolio',
   description: 'Explore my portfolio showcasing projects, articles, and products I have developed as a software engineer.',
