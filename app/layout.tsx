@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from 'next/font/google';
+import Navigation from "@/components/navigation/navigation";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,9 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable}`}>
       <body>
-        {/* navbar */}
-        {children}
-        {/* footer */}
+        <main className="container mx-auto px-4 py-8">
+          <Navigation />
+          {children}
+        </main>
       </body>
     </html>
   );

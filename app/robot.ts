@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     return {
         rules: {
             userAgent: "*",
-            allow: navbar.map((item, _) => {
+            allow: navbar.map((item) => {
                 return `${process.env.SITE_URL}${item.link}`
             }),
             disallow: [],

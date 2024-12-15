@@ -1,117 +1,120 @@
-"use client"
+import { MDXContent } from '@/components/mdx-components'
+import { getAllPosts } from '@/helper/posts'
+import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import React from 'react'
-const articles = [
-    {
-        id: 1,
-        title: "7 Fungsi Facebook Pixel Yang Bisa Membuat Iklan Tepat Sasaran",
-        content:
-            "Facebook Pixel adalah alat yang penting untuk memaksimalkan kampanye iklan...",
-        fullContent:
-            "Setelah memahami fitur lengkap yang dimiliki Facebook Pixel, Anda bisa jauh meningkatkan performa iklan...",
-        tags: ["Teknologi", "Marketing", "Facebook"],
-        createdAt: "17 January 2023",
-        duration: 7,
-        viewCount: 2100,
-        mainImage: "/asset/facebook-pixel.jpg",
-        additionalImage: "/asset/facebook-login.jpg",
-        slug: "artikel-1"
-    },
-    {
-        id: 2,
-        title: "Mengenal Framework Next.js untuk Pengembangan Website",
-        content:
-            "Next.js telah menjadi salah satu framework populer untuk pengembangan website modern...",
-        fullContent: "Artikel ini membahas fitur-fitur utama yang membuat Next.js unggul.",
-        tags: ["Teknologi", "Web Development", "Next.js"],
-        createdAt: "20 February 2023",
-        duration: 8,
-        viewCount: 950,
-        mainImage: "/asset/nextjs.jpg",
-        additionalImage: "/asset/nextjs-example.jpg",
-    },
-];
 
-function Page() {
-    const router = useRouter();
-    const { slug } = router.query;
-    console.log(slug)
+interface PostPageProps {
+    params: {
+        slug: string;
+    };
+}
 
+async function getPostFromParams(params: PostPageProps["params"]) {
+    const articles = getAllPosts(0, 0);
+    const { slug } = await params
     const article = articles.find((article) => article.slug === slug);
+
+    return article;
+}
+
+export async function generateMetadata({
+    params,
+}: PostPageProps): Promise<Metadata> {
+    const post = await getPostFromParams(params);
+
+    if (!post) {
+        return {};
+    }
+
+    const metadata: Metadata = {
+        title: post.title,
+        description: post.description,
+        authors: { name: post.author },
+        openGraph: {
+            title: post.title,
+            description: post.description,
+            type: "article",
+            url: post.slug,
+            images: [
+                {
+                    url: post.imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: post.title,
+            description: post.description,
+            images: [post.imageUrl],
+        },
+    }
+
+    return metadata
+}
+
+export async function generateStaticParams() {
+    const retrieveArticles = getAllPosts(0, 0)
+
+    return retrieveArticles.map((data) => ({
+        slug: data.slug
+    }))
+}
+
+async function Page({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+
+    const article = await getPostFromParams({
+        slug: slug
+    });
 
     if (!article) {
         return <p>Article not found</p>;
     }
+
     return (
-        <main className="bg-white min-h-screen py-10">
-            <div className="max-w-4xl mx-auto px-4">
-                {/* Title */}
-                <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
-                <div className="flex items-center text-gray-500 text-sm mb-6">
-                    <span>{article.createdAt}</span>
-                    <span className="mx-2">•</span>
-                    <span>{article.duration} menit baca</span>
-                    <span className="mx-2">•</span>
-                    <span>👁️ {article.viewCount}</span>
-                </div>
+        <div className='py-10 max-w-4xl mx-auto'>
+            <div className="flex flex-wrap gap-2 mb-6">
+                {article.categories.map((category, idx) => {
+                    const categoryColors: { [key: string]: string } = {
+                        Design: 'bg-purple-100 text-purple-600',
+                        Research: 'bg-blue-100 text-blue-600',
+                        Presentation: 'bg-pink-100 text-pink-600',
+                    };
 
-                {/* Main Image */}
-                <Image
-                    src={article.mainImage}
-                    alt="Main article image"
-                    className="rounded-lg"
-                    width={800}
-                    height={450}
-                    objectFit="cover"
-                />
-                <span className="block text-gray-400 text-xs text-right mt-2">Sumber: Unsplash</span>
-
-                {/* Content */}
-                <article className="text-gray-800 leading-relaxed mt-8">
-                    <p>{article.content}</p>
-                    <br />
-                    <p>{article.fullContent}</p>
-                </article>
-
-                {/* Additional Image */}
-                <Image
-                    src={article.additionalImage}
-                    alt="Additional article image"
-                    className="rounded-lg mt-8"
-                    width={800}
-                    height={450}
-                    objectFit="cover"
-                />
-
-                {/* Tags */}
-                <div className="flex items-center gap-3 mt-6">
-                    {article.tags.map((tag, idx) => (
-                        <span
-                            key={idx}
-                            className="px-4 py-1 bg-[#E9DFFC] border border-[#BE9FF6] rounded-full text-[#784DC7] text-sm"
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-
-                {/* Social Sharing */}
-                <div className="flex items-center gap-4 mt-10 text-gray-500">
-                    <Link href="#">
-                        <a className="hover:text-gray-700">📤 Share</a>
-                    </Link>
-                    <Link href="#">
-                        <a className="hover:text-gray-700">💬 Comment</a>
-                    </Link>
-                    <Link href="#">
-                        <a className="hover:text-gray-700">❤️ Like</a>
-                    </Link>
-                </div>
+                    const categoryClass = categoryColors[category] || 'bg-gray-100 text-gray-600';
+                    return (
+                        <span key={idx} className={`px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm ${categoryClass}`}>{category}</span>
+                    );
+                })}
             </div>
-        </main>
-    )
+
+            <h1 className="text-6xl font-extrabold mb-8">{article.title}</h1>
+
+            <div className="text-sm mb-10 w-[60%] lg:w-[25%] flex justify-between">
+                <h3 className="font-medium">{article.author}</h3>
+                <h3 className="font-medium">{new Date(article.date).toDateString()}</h3>
+            </div>
+
+            <div className="mb-10">
+                <Image
+                    src={article.imageUrl}
+                    alt={article.title}
+                    className="w-full rounded-lg object-cover"
+                    style={{ height: '400px', objectPosition: 'center' }}
+                    height={400}
+                    width={400}
+                />
+            </div>
+
+            <div className="prose prose-lg prose-indigo">
+                <MDXContent code={article.body} />
+            </div>
+        </div>
+    );
 }
 
-export default Page
+export default Page;

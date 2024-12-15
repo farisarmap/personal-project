@@ -1,6 +1,4 @@
 import DisplayCard from "@/components/card/display-card";
-import Navigation from "@/components/navigation/navigation";
-import { navbar } from "@/data/navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
@@ -26,11 +24,9 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className=" min-h-screen">
-      <Navigation />
-
-      <section className=" font-tts flex justify-center h-[300px] border-b-2 border-black">
-        <h1 className=" text-[250px] text-defColorText">FARIS SARMA</h1>
+    <div className="">
+      <section className=" font-tts flex justify-center h-[250px] border-b-2 border-black">
+        <h1 className=" text-[230px] text-defColorText text-center">FARIS SARMA</h1>
       </section>
       <section className="px-5 border-b-2 border-black flex">
         <div className=" w-[65%] p-10 border-r-2 border-black">
@@ -78,13 +74,13 @@ export default function Home() {
             </button>
           </Link>
         </div>
-        <div className="flex justify-center mb-20">
-          <div className="grid grid-cols-4 gap-6">
-            <DisplayCard />
-            <DisplayCard />
-            <DisplayCard />
-            <DisplayCard />
-          </div>
+        <div className="flex justify-center gap-6 items-center mb-20">
+          {/* <div className="grid grid-cols-4 gap-6"> */}
+          <DisplayCard />
+          <DisplayCard />
+          <DisplayCard />
+          <DisplayCard />
+          {/* </div> */}
         </div>
       </section>
       <section className="py-20 border-b-2 border-black">
@@ -110,6 +106,6 @@ export default function Home() {
       </section>
       <br />
       <br />
-    </main>
+    </div>
   );
 }
