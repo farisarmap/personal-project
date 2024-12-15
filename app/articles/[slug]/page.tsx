@@ -4,27 +4,24 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react'
 
-interface PostPageProps {
-    params: {
-        slug: string;
-    };
+type Props = {
+    params: Promise<{ slug: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-async function getPostFromParams(params: PostPageProps["params"]) {
+async function getPostFromParams(slug: string) {
     const articles = await getAllPosts(0, 0);
-    const { slug } = await params
     const article = articles.find((article) => article.slug === slug);
 
     return article;
 }
 
-export async function generateMetadata({
-    params,
-}: PostPageProps): Promise<Metadata> {
-    const post = await getPostFromParams(params);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const slug = (await params).slug
+    const post = await getPostFromParams(slug);
 
     if (!post) {
-        throw new Error(`Article with slug '${params.slug}' not found`);
+        throw new Error(`Article with slug '${slug}' not found`);
     }
 
     return {
@@ -62,10 +59,9 @@ export async function generateStaticParams() {
     }));
 }
 
-async function Page({ params }: PostPageProps) {
-    const { slug } = await params;
-
-    const article = await getPostFromParams({ slug });
+async function Page({ params }: Props) {
+    const slug = (await params).slug
+    const article = await getPostFromParams(slug);
 
     if (!article) {
         return <p>Article not found</p>;
