@@ -11,7 +11,7 @@ interface PostPageProps {
 }
 
 async function getPostFromParams(params: PostPageProps["params"]) {
-    const articles = getAllPosts(0, 0);
+    const articles = await getAllPosts(0, 0);
     const { slug } = await params
     const article = articles.find((article) => article.slug === slug);
 
@@ -24,10 +24,10 @@ export async function generateMetadata({
     const post = await getPostFromParams(params);
 
     if (!post) {
-        return {};
+        throw new Error(`Article with slug '${params.slug}' not found`);
     }
 
-    const metadata: Metadata = {
+    return {
         title: post.title,
         description: post.description,
         authors: { name: post.author },
@@ -51,25 +51,21 @@ export async function generateMetadata({
             description: post.description,
             images: [post.imageUrl],
         },
-    }
-
-    return metadata
+    };
 }
 
 export async function generateStaticParams() {
-    const retrieveArticles = getAllPosts(0, 0)
+    const retrieveArticles = await getAllPosts(0, 0);
 
     return retrieveArticles.map((data) => ({
         slug: data.slug
-    }))
+    }));
 }
 
-async function Page({ params }: { params: Promise<{ slug: string }> }) {
+async function Page({ params }: PostPageProps) {
     const { slug } = await params;
 
-    const article = await getPostFromParams({
-        slug: slug
-    });
+    const article = await getPostFromParams({ slug });
 
     if (!article) {
         return <p>Article not found</p>;
@@ -87,7 +83,7 @@ async function Page({ params }: { params: Promise<{ slug: string }> }) {
 
                     const categoryClass = categoryColors[category] || 'bg-gray-100 text-gray-600';
                     return (
-                        <span key={idx} className={`px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm ${categoryClass}`}>{category}</span>
+                        <span key={idx} className={`px-3 py-1 rounded-full text-sm ${categoryClass}`}>{category}</span>
                     );
                 })}
             </div>

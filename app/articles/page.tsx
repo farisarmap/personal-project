@@ -3,6 +3,8 @@ import RecentBlogPost from './recent-blog-post';
 import AllArticles from './all-post';
 import { getLatestPost } from '@/helper/posts';
 
+//! add metadata for this page
+
 function Articles() {
     const latestPost = getLatestPost()
     const headArticle: {
