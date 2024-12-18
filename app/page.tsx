@@ -33,7 +33,7 @@ export default function Home() {
       </section>
 
       {/* Main content */}
-      <section className="px-5 lg:border-b-2 mb-10 lg:border-black flex flex-col lg:flex-row">
+      <section className="lg:px-5 lg:border-b-2 mb-10 lg:border-black flex flex-col lg:flex-row">
         <div className="w-full lg:w-[65%] pt-5 lg:p-10 lg:border-b-0 lg:border-r-2 border-black">
           {/* Heading */}
           <h1 className=" text-2xl lg:text-4xl text-defColorText font-extrabold tracking-wide leading-normal uppercase ">
