@@ -23,17 +23,20 @@ export const metadata = {
   },
 };
 
-
 export default function Home() {
   return (
     <div className="">
-      <section className=" font-tts flex justify-center h-[250px] border-b-2 border-black">
-        <h1 className=" text-[230px] text-defColorText text-center">FARIS SARMA</h1>
+      <section className="font-tts lg:flex lg:justify-center lg:h-[250px] h-fit border-b-2 border-black">
+        <h1 className="lg:text-[230px] text-[105px] text-defColorText lg:text-center">
+          FARIS SARMA
+        </h1>
       </section>
-      <section className="px-5 border-b-2 border-black flex">
-        <div className=" w-[65%] p-10 border-r-2 border-black">
+
+      {/* Main content */}
+      <section className="px-5 lg:border-b-2 mb-10 lg:border-black flex flex-col lg:flex-row">
+        <div className="w-full lg:w-[65%] pt-5 lg:p-10 lg:border-b-0 lg:border-r-2 border-black">
           {/* Heading */}
-          <h1 className="text-4xl text-defColorText font-extrabold tracking-wide leading-normal uppercase ">
+          <h1 className=" text-2xl lg:text-4xl text-defColorText font-extrabold tracking-wide leading-normal uppercase ">
             Take a look at my experience in software engineering along with the {" "}
             <span className="text-tersier">projects, articles, and products</span>{" "}
             I`ve worked on
@@ -41,7 +44,7 @@ export default function Home() {
           <br />
           <br />
           {/* Subheading */}
-          <p className="text-4xl text-defColorText font-extrabold tracking-wide leading-normal uppercase">
+          <p className="text-2xl lg:text-4xl text-defColorText font-extrabold tracking-wide leading-normal uppercase">
             <span className=" text-tersier">Welcome to my portfolio</span>
             —where I showcase my skills, share insights through articles, and present the products I`ve developed.
           </p>
@@ -56,55 +59,61 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="w-[35%] flex justify-center items-center">
-          <div className="w-[400px] h-[380px] bg-secondary border border-black rounded-lg flex justify-center items-center">
+
+        <div className="hidden lg:w-[35%] lg:flex lg:justify-center lg:items-center lg:mt-0">
+          <div className="hidden lg:w-[350px] lg:h-[350px] lg:bg-secondary lg:border lg:border-black lg:rounded-lg lg:flex lg:justify-center lg:items-center">
             <Image src={"/icon/avatar/avatar.png"} height={350} width={350} alt="avatar" />
           </div>
         </div>
-
       </section>
-      <section className=" py-20 border-b-2 border-black">
-        <h1 className=" text-[128px] text-defColorText font-extrabold px-16">Project Collections</h1>
-        <div className="flex justify-end pr-36 mb-10">
+
+      {/* Project Section */}
+      <section className="py-20 border-t-2 border-b-2 border-black">
+        <h1 className="text-[64px] lg:text-[128px] text-defColorText font-extrabold lg:px-5 mb-5 lg:mb-20">Project Collections</h1>
+        <div className="grid grid-cols-1 lg:flex lg:justify-center gap-6 items-center mb-20">
+          <DisplayCard />
+          <DisplayCard />
+          <DisplayCard />
+          <DisplayCard />
+        </div>
+
+        <div className="flex justify-center items-center mb-10">
           <Link href={"/projects"}>
-            <button className="relative text-defColorText font-extrabold text-[30px] uppercase group hover:scale-105 transition-transform duration-300">
-              See More
-              <div className="absolute left-1/2 transform -translate-x-1/2 top-full flex items-center gap-1 transition-all duration-300 group-hover:scale-105">
-                <span className="block w-[100px] h-[4px] bg-tersier transition-all duration-300 group-hover:w-[150px]"></span>
-                <span className="block w-4 h-4 border-t-4 border-r-4 border-tersier rotate-45"></span>
+            <button className="dark:bg-slate-200 w-full bg-black duration-200">
+              <div
+                className="bg-slate-200 dark:bg-black dark:border-slate-200 active:translate-x-0 active:translate-y-0 flex items-center border-slate-900 border-2 duration-200 px-4 py-2 -translate-x-1 -translate-y-1 hover:-translate-x-1.5 hover:-translate-y-1.5 w-full"
+              >
+                <h4 className="dark:text-slate-200 duration-200">
+                  <div className="flex justify-start items-center">See More</div>
+                </h4>
               </div>
             </button>
           </Link>
-        </div>
-        <div className="flex justify-center gap-6 items-center mb-20">
-          {/* <div className="grid grid-cols-4 gap-6"> */}
-          <DisplayCard />
-          <DisplayCard />
-          <DisplayCard />
-          <DisplayCard />
-          {/* </div> */}
         </div>
       </section>
+
+      {/* Articles Section */}
       <section className="py-20 border-b-2 border-black">
-        <h1 className=" text-[128px] text-defColorText font-extrabold px-16">Latest Articles</h1>
-        <div className="flex justify-end pr-36 mb-10">
+        <h1 className="text-[64px] lg:text-[128px] text-defColorText font-extrabold px-5 mb-5 lg:mb-20">Latest Articles</h1>
+        <div className="grid grid-cols-1 lg:flex lg:justify-center gap-6 items-center mb-20">
+          <DisplayCard />
+          <DisplayCard />
+          <DisplayCard />
+          <DisplayCard />
+        </div>
+        <div className="flex justify-center items-center mb-10">
           <Link href={"/articles"}>
-            <button className="relative text-defColorText font-extrabold text-[30px] uppercase group hover:scale-105 transition-transform duration-300">
-              See More
-              <div className="absolute left-1/2 transform -translate-x-1/2 top-full flex items-center gap-1 transition-all duration-300 group-hover:scale-105">
-                <span className="block w-[100px] h-[4px] bg-tersier transition-all duration-300 group-hover:w-[150px]"></span>
-                <span className="block w-4 h-4 border-t-4 border-r-4 border-tersier rotate-45"></span>
+            <button className="dark:bg-slate-200 w-full bg-black duration-200">
+              <div
+                className="bg-slate-200 dark:bg-black dark:border-slate-200 active:translate-x-0 active:translate-y-0 flex items-center border-slate-900 border-2 duration-200 px-4 py-2 -translate-x-1 -translate-y-1 hover:-translate-x-1.5 hover:-translate-y-1.5 w-full"
+              >
+                <h4 className="dark:text-slate-200 duration-200">
+                  <div className="flex justify-start items-center">See More</div>
+                </h4>
               </div>
             </button>
           </Link>
         </div>
-        <div className="flex justify-center gap-6 items-center mb-20">
-          <DisplayCard />
-          <DisplayCard />
-          <DisplayCard />
-          <DisplayCard />
-        </div>
-
       </section>
       <br />
       <br />

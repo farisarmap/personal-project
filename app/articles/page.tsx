@@ -3,7 +3,33 @@ import RecentBlogPost from './recent-blog-post';
 import AllArticles from './all-post';
 import { getLatestPost } from '@/helper/posts';
 
-//! add metadata for this page
+export const metadata = {
+    title: 'Articles - My Blog',
+    description: 'Explore a variety of articles on topics such as technology, software development, tutorials, and more on My Blog.',
+    openGraph: {
+        title: 'Articles - My Blog',
+        description: 'Explore a variety of articles on topics such as technology, software development, tutorials, and more on My Blog.',
+        images: [
+            {
+                url: '/path/to/your/default-image.jpg',
+                width: 800,
+                height: 600,
+                alt: 'Blog Articles Overview',
+            },
+        ],
+        type: 'website',
+        url: 'https://yourwebsite.com/articles',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        site: '@yourTwitterHandle',
+        title: 'Articles - My Blog',
+        description: 'Explore a variety of articles on topics such as technology, software development, tutorials, and more on My Blog.',
+        image: '/path/to/your/default-image.jpg',
+    },
+};
+
+
 
 function Articles() {
     const latestPost = getLatestPost()
