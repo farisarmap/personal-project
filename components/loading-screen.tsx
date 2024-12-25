@@ -14,6 +14,7 @@ const LoadingScreen: React.FC = () => {
     const [scope, animate] = useAnimate();
 
     useEffect(() => {
+        console.log("LoadingScreen mounted");
         const animateLoader = async () => {
             const letterAnimation: any = [];
 

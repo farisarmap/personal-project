@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Loading from '../loading';
 
 export type Article = {
     // id: string;
@@ -21,6 +22,16 @@ type RecentBlogPostProps = {
 };
 
 function RecentBlogPost({ articles, headArticle }: RecentBlogPostProps) {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setIsLoading(false), 4000); // Simulate 3 seconds of loading
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
             <div className="space-y-4 lg:space-x-4 lg:border-r-2 lg:border-black">
