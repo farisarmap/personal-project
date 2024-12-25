@@ -66,9 +66,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Project Section */}
-      <section className="py-20 border-t-2 border-b-2 border-black">
+      <section className="py-20 border-b-2 border-black">
         <h1 className="text-[64px] lg:text-[128px] text-defColorText font-extrabold lg:px-5 mb-5 lg:mb-20">Project Collections</h1>
         <div className="grid grid-cols-1 lg:flex lg:justify-center gap-6 items-center mb-20">
           <DisplayCard />

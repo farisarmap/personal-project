@@ -31,7 +31,7 @@ export const metadata = {
 
 
 
-function Articles() {
+async function Articles() {
     const latestPost = getLatestPost()
     const headArticle: {
         title: string;

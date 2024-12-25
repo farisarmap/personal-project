@@ -1,14 +1,16 @@
+// layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from 'next/font/google';
 import Navigation from "@/components/navigation/navigation";
+import AnimatedWrapper from "@/components/animated-wrapper";
 
 const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   style: ['normal']
-})
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,12 +22,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en" className={`${poppins.variable}`}>
       <body>
         <main className="container mx-auto px-4 py-8">
           <Navigation />
-          {children}
+          <AnimatedWrapper>
+            {children}
+          </AnimatedWrapper>
         </main>
       </body>
     </html>

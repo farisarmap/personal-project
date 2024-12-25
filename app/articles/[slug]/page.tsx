@@ -1,4 +1,5 @@
 import { MDXContent } from '@/components/mdx-components'
+import ProgressBar from '@/components/progress-bar';
 import { getAllPosts } from '@/helper/posts'
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -69,6 +70,7 @@ async function Page({ params }: Props) {
 
     return (
         <div className='py-10 max-w-4xl mx-auto'>
+            <ProgressBar />
             <div className="flex flex-wrap gap-2 mb-6">
                 {article.categories.map((category, idx) => {
                     const categoryColors: { [key: string]: string } = {
