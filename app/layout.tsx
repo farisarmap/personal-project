@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from 'next/font/google';
 import Navigation from "@/components/navigation/navigation";
-import AnimatedWrapper from "@/components/animated-wrapper";
 
 const poppins = Poppins({
   subsets: ['latin'],
