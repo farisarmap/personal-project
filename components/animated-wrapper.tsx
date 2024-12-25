@@ -12,10 +12,12 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({ children }) => {
     const pathname = usePathname();
 
     return (
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="wait">
             <motion.div
                 key={pathname}
+                // initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                // exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
                 className="w-full"
             >
