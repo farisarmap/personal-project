@@ -15,9 +15,8 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({ children }) => {
         <AnimatePresence initial={false}>
             <motion.div
                 key={pathname}
-                // animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                // transition={{ duration: 0.5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
                 className="w-full"
             >
                 {children}

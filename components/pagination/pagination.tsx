@@ -27,7 +27,7 @@ export default function Pagination({
 
     const pageNumbers = () => {
         const pages: (number | string)[] = [];
-        const range = 3;  // Number of page numbers to show before and after current page
+        const range = 3;
 
         // Calculate the page numbers dynamically
         for (let i = 1; i <= totalPages; i++) {
