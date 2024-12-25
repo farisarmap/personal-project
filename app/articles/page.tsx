@@ -32,6 +32,7 @@ export const metadata = {
 
 
 async function Articles() {
+    await new Promise(resolve => setTimeout(resolve, 3500))
     const latestPost = getLatestPost()
     const headArticle: {
         title: string;

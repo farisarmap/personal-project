@@ -28,9 +28,7 @@ export default function RootLayout({
       <body>
         <main className="container mx-auto px-4 py-8">
           <Navigation />
-          <AnimatedWrapper>
-            {children}
-          </AnimatedWrapper>
+          {children}
         </main>
       </body>
     </html>
